@@ -15,10 +15,10 @@ const app = express();
 app.use(bodyParser.json());
 // Configurando o CORS
 const corsOptions = {
-	origin: 'https://front-fullstack-base.henningsummer1.repl.co', // Substitua pela origem do seu frontend
-	methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-	credentials: true,
-	optionsSuccessStatus: 204,
+  origin: '*', // Substitua pela origem do seu frontend
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204,
 };
 
 app.use(cors(corsOptions));
@@ -26,18 +26,18 @@ app.use(express.json());
 
 // Configuração da sessão (usando express-session)
 app.use(
-	session({
-		secret: secret,
-		resave: false,
-		saveUninitialized: true,
-		cookie: { secure: false },
-	}),
+  session({
+    secret: secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  }),
 );
 
 // Configuração do rate limiting para proteção contra ataques de força bruta
 const limiter = rateLimit({
-	windowMs: 15 * 60 * 1000, // 15 minutos
-	max: 5, // 5 tentativas máximas por IP
+  windowMs: 15 * 60 * 1000, // 15 minutos
+  max: 5, // 5 tentativas máximas por IP
 });
 
 app.use("/login", limiter);
@@ -49,28 +49,36 @@ const db = new sqlite3.Database("./db/database.db");
 // Criação e atualização das entidades
 const userModel = require("./models/userModel");
 const productModel = require("./models/productModel");
+const cursoModel = require("./models/cursoModel");
 userModel.createTableUser(db);
 productModel.createTableProduct(db);
+cursoModel.createTableCurso(db);
+
 
 // Criação dos controllers e da aplicação
 const authController = require("./controllers/authController");
 const userController = require("./controllers/userController");
 const productController = require("./controllers/productController");
+const cursoController = require("./controllers/cursoController");
+
 
 // Iniciando o DB nos controllers
 authController.initDB(db);
 userController.initDB(db);
 productController.initDB(db);
+cursoController.initDB(db);
 
 
 // Rotas da aplicação
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var productsRouter = require("./routes/products");
+var cursosRouter = require("./routes/cursos");
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/products", productsRouter);
+app.use("/cursos", cursosRouter);
 
 // View engine setup
 app.set("views", path.join(__dirname, "views"));

@@ -9,17 +9,17 @@ router.get('/', function(req, res, next) {
 
 /* GET home page. */
 router.post('/login', function(req, res, next) {
-	const { username, password } = req.body;
-	authController.authLogin(res, req, username, password);
+  const { username, password } = req.body;
+  authController.authLogin(res, req, username, password);
 });
 
 // Rota de logout
 router.get('/logout', (req, res) => {
-	// Remove o token JWT do cookie (ou do armazenamento local)
-	res.clearCookie('token'); // 'token' é o nome do cookie onde o token está armazenado
+  // Remove o token JWT do cookie (ou do armazenamento local)
+  res.clearCookie('token'); // 'token' é o nome do cookie onde o token está armazenado
 
-	// Responde com uma mensagem de sucesso
-	res.json({ message: 'Logout bem-sucedido' });
+  // Responde com uma mensagem de sucesso
+  res.json({ message: 'Logout bem-sucedido' });
 });
 
 module.exports = router;

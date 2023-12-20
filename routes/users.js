@@ -6,7 +6,7 @@ var {authenticateToken} = require("../controllers/authController")
 
 /* GET users listing. */
 router.get("/", authenticateToken, function (req, res, next) {
-	userController.selectUsers(res);
+  userController.selectUsers(res);
 });
 
 router.post("/register", (req, res) => {
@@ -15,8 +15,8 @@ router.post("/register", (req, res) => {
 
 
 router.get("/:id",authenticateToken, function (req, res, next) {
-	const id = req.params.id;
-	userController.selectUserId(res, id);
+  const id = req.params.id;
+  userController.selectUserId(res, id);
 });
 
 

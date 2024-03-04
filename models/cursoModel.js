@@ -5,7 +5,10 @@ function createTableCurso(db) {
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   nome TEXT UNIQUE,
   descricao TEXT,
-  duracao_semanas TEXT
+  duracao_semanas TEXT,
+  n_aulas TEXT,
+  nivel TEXT,
+  foto TEXT
 )`,
     (err) => {
       if (err) {

@@ -48,36 +48,30 @@ const db = new sqlite3.Database("./db/database.db");
 
 // Criação e atualização das entidades
 const userModel = require("./models/userModel");
-const productModel = require("./models/productModel");
 const cursoModel = require("./models/cursoModel");
 userModel.createTableUser(db);
-productModel.createTableProduct(db);
 cursoModel.createTableCurso(db);
 
 
 // Criação dos controllers e da aplicação
 const authController = require("./controllers/authController");
 const userController = require("./controllers/userController");
-const productController = require("./controllers/productController");
 const cursoController = require("./controllers/cursoController");
 
 
 // Iniciando o DB nos controllers
 authController.initDB(db);
 userController.initDB(db);
-productController.initDB(db);
 cursoController.initDB(db);
 
 
 // Rotas da aplicação
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var productsRouter = require("./routes/products");
 var cursosRouter = require("./routes/cursos");
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/products", productsRouter);
 app.use("/cursos", cursosRouter);
 
 // View engine setup

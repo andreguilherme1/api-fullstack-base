@@ -6,9 +6,9 @@ function initDB(dbo) {
 // Inserindo no banco
 function insertCurso(req, res) {
   console.log('data',req);
-  const { nome, descricao, duracao_semanas } = req;
+  const { nome, descricao, duracao_semanas, n_aulas, nivel, foto} = req;
 
-  console.log(nome, descricao, duracao_semanas);
+  console.log(nome, descricao, duracao_semanas, n_aulas, nivel, foto);
     db.get("SELECT * FROM cursos WHERE nome = ?", nome, (err, row) => {
       if (row) {
         return res
@@ -17,10 +17,13 @@ function insertCurso(req, res) {
       }
       // Insere o curso no banco
       db.run(
-        "INSERT INTO cursos (nome, descricao, duracao_semanas) VALUES (?, ?, ?)",
+        "INSERT INTO cursos (nome, descricao, duracao_semanas, n_aulas, nivel, foto) VALUES (?, ?, ?, ?, ?, ?)",
         nome,
         descricao,
         duracao_semanas,
+        n_aulas,
+        nivel,
+        foto,
         (err) => {
           if (err) {
             console.error("Erro ao criar o curso:", err);
@@ -58,12 +61,12 @@ function selectCursoId(res, id) {
 
 // Atualizando no banco
 function updateCurso(req, res) {
-  let { id, nome, descricao, duracao_semanas } = req;
+  let { id, nome, descricao, duracao_semanas, n_aulas, nivel, foto} = req;
     // Insere o curso no banco
     db.run(
-      `UPDATE cursos SET nome = ?, descricao = ?, duracao_semanas = ? WHERE id =
+      `UPDATE cursos SET nome = ?, descricao = ?, duracao_semanas = ?, n_aulas = ?, nivel = ?, foto = ? WHERE id =
   ?`,
-      [nome, descricao, duracao_semanas, id],
+      [nome, descricao, duracao_semanas, n_aulas, nivel, foto, id],
       function (err) {
         if (err) {
           console.error("Erro ao atualizar o curso:", err);

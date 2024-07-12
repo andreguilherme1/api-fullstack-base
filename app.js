@@ -15,7 +15,7 @@ const app = express();
 app.use(bodyParser.json());
 // Configurando o CORS
 const corsOptions = {
-  origin: '*', // Substitua pela origem do seu frontend
+  origin: '*', // Origem do seu frontend
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204,

@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 
-// Criando tabela
+// Criando tabela usuários
 function createTableUser(db) {
   db.run(
     `CREATE TABLE IF NOT EXISTS users (
@@ -20,6 +20,7 @@ function createTableUser(db) {
   );
 }
 
+// Criando usuário admin
 function createUserAdmin(db){
 
 	let username = "admin"

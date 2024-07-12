@@ -3,7 +3,7 @@ function initDB(dbo) {
   db = dbo;
 }
 
-// Inserindo no banco
+// Inserindo curso no banco
 function insertCurso(req, res) {
   console.log('data',req);
   const { nome, descricao, duracao_semanas, n_aulas, nivel, foto} = req;
@@ -36,7 +36,7 @@ function insertCurso(req, res) {
     });
 }
 
-//  Selecionando no banco
+//  Selecionando curso no banco
 function selectCursos(res) {
   db.all("SELECT * FROM cursos", (err, rows) => {
     if (err) {
@@ -59,7 +59,7 @@ function selectCursoId(res, id) {
   });
 }
 
-// Atualizando no banco
+// Atualizando curso no banco
 function updateCurso(req, res) {
   let { id, nome, descricao, duracao_semanas, n_aulas, nivel, foto} = req;
     // Insere o curso no banco
@@ -79,7 +79,7 @@ function updateCurso(req, res) {
     );
 }
 
-// Deletando no banco
+// Deletando curso no banco
 function deleteCurso(req, res) {
   let { id } = req;
 

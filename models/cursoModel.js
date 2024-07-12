@@ -1,4 +1,4 @@
-// Criando tabela
+// Criando tabela curso
 function createTableCurso(db) {
   db.run(
     `CREATE TABLE IF NOT EXISTS cursos (

@@ -2,12 +2,12 @@ var express = require('express');
 var router = express.Router();
 var authController = require("../controllers/authController")
 
-/* GET home page. */
+// GET home page.
 router.get('/', function(req, res, next) {
   res.json({ title: 'Wellcome to api fullstack' });
 });
 
-/* GET home page. */
+// GET home page.
 router.post('/login', function(req, res, next) {
   const { username, password } = req.body;
   authController.authLogin(res, req, username, password);

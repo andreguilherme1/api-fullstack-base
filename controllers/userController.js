@@ -4,7 +4,7 @@ function initDB(dbo) {
 	db = dbo;
 }
 
-// Inserindo no banco
+// Inserindo usuário no banco
 function insertUser(req, res) {
 	console.log('data',req);
   const { username, password, email } = req;
@@ -41,7 +41,7 @@ function insertUser(req, res) {
   });
 }
 
-//  Selecionando no banco
+//  Selecionando usuário no banco
 function selectUsers(res) {
   db.all("SELECT * FROM users", (err, rows) => {
     if (err) {
@@ -64,7 +64,7 @@ function selectUserId(res, id) {
   });
 }
 
-// Atualizando no banco
+// Atualizando usuário no banco
 function updateUser(req, res) {
   let { id, username, password, email } = req;
   bcrypt.hash(password, 10, (err, hash) => {
